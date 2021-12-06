@@ -1,0 +1,40 @@
+body{
+    background-color:rgb(246 246 246);
+}
+/* alert notice */
+.alert-left-primary{
+   
+    border-left: 4px solid #03a9f4 !important;
+}
+.my-5{
+    margin-top: 2.5rem  !important; 
+    margin-bottom: 2.5rem  !important; 
+}
+.asterisk{
+    font-size: 26px;
+    vertical-align: middle; 
+}
+.fs-3rem{
+    font-size: 3.5rem;
+}
+.fs-2rem{
+    font-size: 2rem;
+}
+.fs-18{
+    font-size: 18px;
+}
+.fs-20{
+    font-size: 20px;
+}
+.fs-22{
+    font-size: 22px;
+}
+.fs-15{
+    font-size: 15px;
+}
+.lh-3{
+    line-height: 3  ;
+}
+.d-n{
+    display: none;
+}

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queuing Theory</title>
+    <link rel="stylesheet" href="css/bootstrap4.css" />
+    <link rel="stylesheet" href="css/fontawesome.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <!-- start container -->
+    <div class="container">
+      <div class="card border-light mt-4">
+        <!-- start card header  -->
+        <div class="card-header text-center h2">Queuing System.</div>
+        <!-- end card header  -->
+        <!-- start card body  -->
+        <div class="card-body py-5">
+          <section class="choose-queue-sec">
+            <!-- queue type-->
+            <div class="choose-queue">
+              <h5 class="card-title p-3 my-4 alert-left-primary">
+                Choose Queue Type.
+              </h5>
+              <!-- start choose queue (DETERMINISTIC or STOCHASTIC)  -->
+              <select
+                class="form-control form-control-lg"
+                id="choose-queue-select-box"
+              >
+                <option value="0">Choose Queue...</option>
+                <option value="1">DETERMINISTIC</option>
+                <option value="2">STOCHASTIC</option>
+              </select>
+            </div>
+            <!-- end choose queue  -->
+          </section>
+          <!-- end section -->
+
+          <section id="parameter-input-sec" class="parameter-input-sec d-n">
+            <!-- horizontal rule -->
+            <hr class="my-4" />
+            <!-- start required parameter section -->
+            <div class="reqired-paramters">
+              <!-- queue type-->
+              <h5 class="card-title p-3 alert-left-primary">
+                Enter required parameters.
+              </h5>
+              <!-- start choose queue (DETERMINISTIC or STOCHASTIC)  -->
+
+              <!-- start form -->
+              <div class="required-parameter-form">
+                <form method="post">
+                  <!-- start general input section -->
+                  <div class="general-inputs" id="general-inputs">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="arrival-time-input">
+                            Enter arrival time(1/&#955;).</label
+                          >
+                          <input
+                            type="number"
+                            min="1"
+                            id="arrival-time-input"
+                            required
+                            class="form-control"
+                            placeholder="Enter arrival time(1/&#955;)..."
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-question-circle"></i> No default
+                              value for this input.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1"
+                            >Enter service time(1/&#956;).</label
+                          >
+                          <input
+                            type="number"
+                            min="1"
+                            class="form-control"
+                            id="service-time-input"
+                            required
+                            placeholder="Enter service time(1/&#956;)..."
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-question-circle"></i> No default
+                              value for this input.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end general input section -->
+                  <!-- start deterministic input section -->
+                  <div
+                    class="deterministic-inputs d-n"
+                    id="deterministic-inputs"
+                  >
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="det-queue-capacity"
+                            >Enter queue Capacity(k-1).</label
+                          >
+                          <input
+                            type="number"
+                            required
+                            min="1"
+                            class="form-control"
+                            id="det-queue-capacity-input"
+                            placeholder="Enter queue Capacity(k-1)..."
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-question-circle"></i> No default
+                              value for this input.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="queue-capacity"
+                            >Enter times n(t1,t2..).</label
+                          >
+                          <input
+                            type="text"
+                            min="1"
+                            class="form-control"
+                            placeholder="Enter the times in comma separated..."
+                            id="times-input"
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-bell text-warning"></i> To show
+                              number of customers at specific Times (t1,t2,,,).
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="nth-customer"
+                            >Enter nth of customer Wq(n) n={1,2,3..}.</label
+                          >
+                          <input
+                            type="text"
+                            min="1"
+                            class="form-control"
+                            placeholder="Enter nth in comma separated..."
+                            id="nth-customer-input"
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-bell text-warning"></i> To show
+                              the time of nth customer waiting in queue ..
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end deterministic input section -->
+                  <!-- start stochastic input section -->
+                  <div class="stochastic-inputs" id="stochastic-inputs">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="serverCount">Number of Servers(k).</label>
+                          <input
+                            type="number"
+                            min="1"
+                            value="1"
+                            class="form-control"
+                            id="stochastic-servers-input"
+                            placeholder="Enter Number of Servers(k)..."
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-bell text-warning"></i> Default
+                              value (one) server.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="queue-capacity"
+                            >Enter Queue Capacity(c).</label
+                          >
+                          <input
+                            type="number"
+                            min="1"
+                            class="form-control"
+                            placeholder="Enter Enter Queue Capacity(c)..."
+                            id="stochastic-queue-capacity-input"
+                          />
+                          <div class="alert-section">
+                            <small
+                              id="emailHelp"
+                              class="d-inline form-text text-muted"
+                            >
+                              <i class="fa fa-bell text-warning"></i> Default
+                              value (<span
+                                class="text-warning font-weight-bolder"
+                                >&infin;</span
+                              >) capacity.
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end stochastic input section -->
+                  <section
+                    class="show-result-btn my-3 d-n"
+                    id="show-result-btn"
+                  >
+                    <button type="submit" class="btn btn-block btn-primary">
+                      Show Results
+                      <span class="spinner-border text-light d-n"></span>
+                    </button>
+                  </section>
+                </form>
+              </div>
+              <!-- start form -->
+            </div>
+            <!-- end required parameter section -->
+          </section>
+          <!-- end section -->
+
+          <!-- start result section -->
+          <div id="result-sec" class="result-sec d-n">
+            <!-- horizontal rule -->
+            <hr class="my-4" />
+            <!-- horizontal rule -->
+            <!-- result card -->
+            <div class="card border-light mt-4">
+              <!-- start card header  -->
+              <div class="card-header text-center h2">Results.</div>
+              <!-- end card header  -->
+              <!-- start card body  -->
+              <div class="card-body">
+                <!-- start deterministic result section -->
+                <section
+                  id="deterministic-result-sec"
+                  class="deterministic-result-sec d-n"
+                >
+                  <div class="case-1">
+                    <div class="deterministic-result">
+                      <div class="row">
+                        <div class="col-md-6 my-1" id="times-left">
+                          <div
+                            class="
+                              d-n
+                              bg-light
+                              rounded
+                              result
+                              border border-danger
+                              number-of-customers-at-t
+                            "
+                          >
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <!-- number of customers in system totally -->
+                                <div class="p-3 text-center">
+                                  <span
+                                    class="
+                                      customors-in-system
+                                      px-2
+                                      pt-2
+                                      fs-3rem
+                                      d-block
+                                    "
+                                  >
+                                    5<span class="text-muted fs-15"
+                                      >customer</span
+                                    >
+                                  </span>
+                                  <span class="customors-in-system-text">
+                                    <span class="fs-2rem">n(12)</span>
+                                    <span class="text-muted">
+                                      Number of customers in system at
+                                      <b> 12</b>.</span
+                                    >
+                                  </span>
+                                </div>
+                                <!-- number of customers in system totally -->
+                              </div>
+                              <div class="col-lg-6">
+                                <!-- number of customers in system totally -->
+                                <div class="p-3 text-center">
+                                  <span
+                                    class="
+                                      customors-in-system
+                                      px-2
+                                      pt-2
+                                      fs-3rem
+                                      d-block
+                                    "
+                                  >
+                                    5<span class="text-muted fs-15"
+                                      >customer</span
+                                    >
+                                  </span>
+                                  <span class="customors-in-system-text">
+                                    <span class="fs-2rem">n(12)</span>
+                                    <span class="text-muted">
+                                      Number of customers in system at
+                                      <b> 12</b>.</span
+                                    >
+                                  </span>
+                                </div>
+                                <!-- number of customers in system totally -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 my-1" id="nth-customer-right">
+                          <!-- number of customers in queue -->
+                          <div
+                            class="
+                              d-n
+                              bg-light
+                              rounded
+                              result
+                              border border-danger
+                              number-of-customers-at-t
+                            "
+                          >
+                            <div class="row" id="number-of-customers-at-t">
+                              <div class="col-lg-6">
+                                <!-- number of customers in system totally -->
+                                <div class="p-3 text-center">
+                                  <span
+                                    class="
+                                      customors-in-system
+                                      px-2
+                                      pt-2
+                                      fs-3rem
+                                      d-block
+                                    "
+                                  >
+                                    5<span class="text-muted fs-15">time</span>
+                                  </span>
+                                  <span class="customors-in-system-text">
+                                    <span class="fs-2rem">Wq(12)</span>
+                                    <span class="text-muted">
+                                      Waiting time of <b> 12</b> customer in
+                                      queue.</span
+                                    >
+                                  </span>
+                                </div>
+                                <!-- number of customers in system totally -->
+                              </div>
+                              <div class="col-lg-6">
+                                <!-- number of customers in system totally -->
+                                <div class="p-3 text-center">
+                                  <span
+                                    class="
+                                      customors-in-system
+                                      px-2
+                                      pt-2
+                                      fs-3rem
+                                      d-block
+                                    "
+                                  >
+                                    5<span class="text-muted fs-15">time</span>
+                                  </span>
+                                  <span class="customors-in-system-text">
+                                    <span class="fs-2rem">Wq(12)</span>
+                                    <span class="text-muted">
+                                      Waiting time of <b> 12</b> customer in
+                                      queue.</span
+                                    >
+                                  </span>
+                                </div>
+                                <!-- number of customers in system totally -->
+                              </div>
+                            </div>
+                          </div>
+                          <!-- number of customers in queue -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="case-2">
+                                        <div class="deterministic-result">
+                                            <div class="row">
+                                                <div class="col-md-6 my-1">
+                                                    <div class="p-2 bg-light rounded result border border-danger number-of-customers-at-t">
+                                                      <div class="nth-of-customer-general-form fs-20 lh-3">
+                                                        For t < 1/&lambda; or t < 4 <span class="fs-22 font-weight-bolder"> n(t) = 0</span><br>
+                                                        For 3< t < 1/&lambda; or 4 ≤ t < 44<span class="fs-22 font-weight-bolder"> n(t) = 44</span><br>
+                                                        For t ≥ ti or or t ≥ 44 <span class="fs-20 font-weight-bolder">n(t) alternates between (4 and 3).</span>
+                                                     </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 my-1">
+                                                    <div class="p-2 bg-light rounded result border border-danger number-of-customers-at-t">
+                                                      <div class="nth-of-customer-general-form fs-20 lh-3">
+                                                        For n = 0  <span class="fs-22 font-weight-bolder">Wq(n) = 0</span><br>
+                                                        For n < &lambda;ti or n < 11<span class="fs-22 font-weight-bolder"> Wq(n) = (1/&mu; - 1/&lambda;)(n-1)</span><br>
+                                                        For n ≥ &lambda;ti or n ≥ 11, <span class="fs-20 font-weight-bolder">n(t) alternates between (16 or 18).</span>
+                                                     </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                  <div
+                    class="deterministic-graph"
+                    id="arrival-graph-canvas-sec"
+                  >
+                    <div class="arrivals-graph">
+                      <canvas
+                        class="arrival-graph-canvas"
+                        id="arrival-graph-canvas"
+                      ></canvas>
+                      <div class="p-3 rounded text-center bg-light fs-18">
+                        Arrival times.
+                      </div>
+                    </div>
+                    <div class="service-graph">
+                      <canvas
+                        class="service-graph-canvas"
+                        id="service-graph-canvas"
+                      ></canvas>
+                      <div class="p-3 rounded text-center bg-light fs-18">
+                        Service times.
+                      </div>
+                    </div>
+                    <div class="departure-graph">
+                      <canvas
+                        class="departure-graph-canvas"
+                        id="departure-graph-canvas"
+                      ></canvas>
+                      <div class="p-3 rounded text-center bg-light fs-18">
+                        Departure times.
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- start deterministic result section -->
+                <!-- start stochastic result section -->
+                <section
+                  id="stochastic-result-sec"
+                  class="stochastic-result-sec d-n"
+                >
+                  <div class="stochastic-results">
+                    <div class="row">
+                      <div class="col-lg-3 my-1">
+                        <!-- number of customers in system totally -->
+                        <div
+                          class="
+                            result
+                            border border-primary
+                            p-3
+                            text-center
+                            bg-light
+                            rounded
+                          "
+                        >
+                          <span
+                            class="
+                              customors-in-system
+                              px-2
+                              pt-2
+                              fs-3rem
+                              d-block
+                            "
+                          >
+                            <span id="expected-num-customers">5</span>
+                            <span class="text-muted fs-15">customer</span>
+                          </span>
+                          <span class="customors-in-system-text">
+                            <span class="fs-2rem">(L)</span>
+                            <span class="text-muted"
+                              >Expected Number of customers in system.</span
+                            >
+                          </span>
+                        </div>
+                        <!-- number of customers in system totally -->
+                      </div>
+                      <div class="col-lg-3 my-1">
+                        <!-- number of customers in queue -->
+                        <div
+                          class="
+                            result
+                            border border-primary
+                            p-3
+                            text-center
+                            bg-light
+                            rounded
+                          "
+                        >
+                          <span
+                            class="
+                              customors-in-system
+                              px-2
+                              pt-2
+                              fs-3rem
+                              d-block
+                            "
+                          >
+                            <span id="expected-num-customers-q">5</span>
+                            <span class="text-muted fs-15">customer</span>
+                          </span>
+                          <span class="customors-in-system-text">
+                            <span class="fs-2rem">(Lq)</span>
+                            <span class="text-muted"
+                              >Expected number of customers in queue.</span
+                            >
+                          </span>
+                        </div>
+                        <!-- number of customers in queue -->
+                      </div>
+                      <div class="col-lg-3 my-1">
+                        <!-- number of customers in queue -->
+                        <div
+                          class="
+                            result
+                            border border-primary
+                            p-3
+                            text-center
+                            bg-light
+                            rounded
+                          "
+                        >
+                          <span
+                            class="
+                              customors-in-system
+                              px-2
+                              pt-2
+                              fs-3rem
+                              d-block
+                            "
+                          >
+                            <span id="expected-waiting">5</span>
+                            <span class="text-muted fs-15">times</span>
+                          </span>
+                          <span class="customors-in-system-text">
+                            <span class="fs-2rem">(W)</span>
+                            <span class="text-muted"
+                              >Expected waiting time in the system.</span
+                            >
+                          </span>
+                        </div>
+                        <!-- number of customers in queue -->
+                      </div>
+                      <div class="col-lg-3 my-1">
+                        <!-- number of customers in queue -->
+                        <div
+                          class="
+                            result
+                            border border-primary
+                            p-3
+                            text-center
+                            bg-light
+                            rounded
+                          "
+                        >
+                          <span
+                            class="
+                              customors-in-system
+                              px-2
+                              pt-2
+                              fs-3rem
+                              d-block
+                            "
+                          >
+                            <span id="expected-waiting-q">5</span>
+                            <span class="text-muted fs-15">times</span>
+                          </span>
+                          <span class="customors-in-system-text">
+                            <span class="fs-2rem">(Wq)</span>
+                            <span class="text-muted"
+                              >Expected waiting time in queue.</span
+                            >
+                          </span>
+                        </div>
+                        <!-- number of customers in queue -->
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- start stochastic result section -->
+              </div>
+            </div>
+            <!-- result card -->
+          </div>
+
+          <!-- end result section -->
+        </div>
+        <!-- start card body  -->
+      </div>
+    </div>
+    <!-- end container -->
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
